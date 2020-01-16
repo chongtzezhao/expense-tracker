@@ -34,7 +34,9 @@ function doPost(e){
   //GmailApp.sendEmail(Session.getEffectiveUser().getEmail(), "Telegram Bot Update", JSON.stringify(contents, null, 4));
   var text = contents.message.text;
   var id = contents.message.from.id;
-  var name = contents.message.from.first_name + ' ' + contents.message.from.last_name;
+  var first = contents.message.from.first_name===undefined?'':contents.message.from.first_name;
+  var last = contents.message.from.last_name===undefined?'':contents.message.from.last_name;
+  var name = last==''?first:first==''?last:first+' '+last;
   var reply = "Hi " +name+", you sent '" + text+"'";
   sendText(id,reply);
   // (DEBUGGING)
